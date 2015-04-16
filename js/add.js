@@ -9,13 +9,20 @@ function onReady() {
 function onSaveTodoBtn() {
     var title = $('#title').val();
     var content = $('#content').val();
+    var currentUser = Parse.User.current();
     console.log(title);
     console.log(content);
+    console.log(currentUser);
 
     var Todo = Parse.Object.extend("Todo");
     var todo = new Todo();
-    todo.set("Title", title);
-    todo.set("Content", content);
+    todo.set("title", title);
+    todo.set("content", content);
+
+    var User = Parse.Object.extend("User");
+    var user = new User();
+    user.id = currentUser.id;
+    todo.set('User', user);
 
     todo.save(null, {
         success: function(todo) {
