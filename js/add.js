@@ -10,14 +10,12 @@ function onSaveTodoBtn() {
     var title = $('#title').val();
     var content = $('#content').val();
     var currentUser = Parse.User.current();
-    console.log(title);
-    console.log(content);
-    console.log(currentUser);
 
     var Todo = Parse.Object.extend("Todo");
     var todo = new Todo();
     todo.set("title", title);
     todo.set("content", content);
+    todo.set("status", false);
 
     var User = Parse.Object.extend("User");
     var user = new User();
